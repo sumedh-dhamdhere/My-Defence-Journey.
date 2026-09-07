@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0B1F33">
+<link rel="icon" type="image/png" href="assets/logo-mark.png">
+<link rel="stylesheet" href="css/style.css">
+<script defer src="js/script.js"></script>
+<title>Dashboard | My Defence Journey</title>
+<meta name="description" content="A browser-based student dashboard with exam guides, study planner, countdown and progress tracker.">
+</head>
+<body data-page="dashboard">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header">
+  <nav class="navbar" aria-label="Primary navigation">
+    <a class="brand" data-brand href="index.html" aria-label="My Defence Journey home">
+      <span class="brand-mark" aria-hidden="true"><img class="brand-logo" src="assets/logo-mark.png" alt=""></span>
+      <span class="brand-text"><span class="brand-title"><span>MY DEFENCE</span><span>JOURNEY</span></span><span class="brand-tag">DREAM • PREPARE • DEFEND</span></span>
+    </a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Open navigation">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a data-page="index.html" href="index.html">Home</a></li>
+      <li><a data-page="exams.html" href="exams.html">Defence Exams</a></li>
+      <li><a data-page="career.html" href="career.html">Career</a></li>
+      <li><a data-page="preparation.html" href="preparation.html">Preparation</a></li>
+      <li><a data-page="dashboard.html" href="dashboard.html">Dashboard</a></li>
+      <li><a data-page="about.html" href="about.html">About</a></li>
+      <li><a data-page="contact.html" href="contact.html">Contact</a></li>
+      <li class="theme-item"><button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode">🌙 <span>Dark</span></button></li>
+    </ul>
+  </nav>
+</header>
+<main id="main-content" class="page-shell">
+
+<section class="dashboard-hero"><div class="container hero-inner hero-grid"><div><div class="eyebrow">Personal study workspace</div><h1>My Defence Dashboard</h1><p class="lead">A browser-based planning space for exam exploration, basic eligibility guidance, study tasks, a countdown and subject progress.</p></div><div><div class="dashboard-kpis"><div class="dashboard-kpi"><strong id="dashTaskCount">0</strong><span>Study tasks</span></div><div class="dashboard-kpi"><strong id="dashProgress">0%</strong><span>Overall progress</span></div><div class="dashboard-kpi"><strong>04</strong><span>Exam guides</span></div></div></div></div></section>
+<section class="section" style="padding-bottom:0"><div class="container"><div class="dashboard-command">
+<section class="command-card"><div class="command-head"><div><div class="eyebrow-sm">Command center</div><h2>Plan your next move</h2><p>Jump straight to the part of your preparation you want to work on.</p></div><span class="hero-badge">⚡ Quick actions</span></div><div class="quick-actions"><a class="quick-action" href="exams.html"><span class="qa-icon">🎯</span><span>Explore exams</span></a><a class="quick-action" href="preparation.html"><span class="qa-icon">📚</span><span>Preparation</span></a><a class="quick-action" href="#exam-tools"><span class="qa-icon">🧭</span><span>Eligibility</span></a><a class="quick-action" href="#taskInput"><span class="qa-icon">✅</span><span>Add a task</span></a></div><div class="dashboard-insight"><span>💡</span><span><strong>Tip:</strong> Pick one small task, complete it, then update your progress instead of trying to do everything at once.</span></div></section>
+<section class="command-card focus-panel"><div class="eyebrow-sm">Focus session</div><h2>Study timer</h2><p class="sub">A simple 25-minute focus block for revision or practice.</p><div id="focusTime" class="focus-time">25:00</div><div class="focus-controls"><button class="tiny-btn" id="focusStart" type="button">▶ Start</button><button class="tiny-btn" id="focusPause" type="button">Ⅱ Pause</button><button class="tiny-btn" id="focusReset" type="button">↺ Reset</button></div><div id="focusStatus" class="focus-status">Ready when you are.</div></section>
+</div></div></section>
+<section class="section"><div class="container"><div class="trust-strip"><span class="trust-icon">✓</span><div><strong>Educational project • information checked on 5 September 2026</strong><p>Exam rules, dates and eligibility can change. This website summarizes official information for learning and directs students to the issuing authority for final verification.</p></div></div><div class="dashboard-grid">
+<section class="dashboard-card" id="exam-tools"><div class="eyebrow-sm">Exam explorer</div><h2>Know the pathway</h2><p class="sub">Open a concise guide with eligibility, selection and source information.</p><div class="exam-mini-grid"><div class="exam-mini"><strong>NDA</strong><span>12th • UPSC • Officer entry</span><button class="tiny-btn" type="button" onclick="openExam('NDA')">Details</button></div><div class="exam-mini"><strong>Navy SSR</strong><span>10+2 • Indian Navy • Agniveer</span><button class="tiny-btn" type="button" onclick="openExam('Navy SSR')">Details</button></div><div class="exam-mini"><strong>AFCAT</strong><span>Graduate • IAF • Officer entry</span><button class="tiny-btn" type="button" onclick="openExam('AFCAT')">Details</button></div><div class="exam-mini"><strong>CDS</strong><span>Graduate • UPSC • Officer entry</span><button class="tiny-btn" type="button" onclick="openExam('CDS')">Details</button></div></div></section>
+<section class="dashboard-card"><div class="eyebrow-sm">Basic guidance</div><h2>Eligibility Explorer</h2><p class="sub">This gives a starting direction only; it is not an official eligibility decision.</p><div class="checker-grid"><div class="field"><label for="education">Education level</label><select id="education"><option value="">Select</option><option value="12th">12th passed / appearing</option><option value="graduate">Graduate / final year</option></select></div><div class="field"><label for="stream">Stream</label><select id="stream"><option value="">Select</option><option value="science">Science / PCM</option><option value="arts">Arts / Humanities</option><option value="commerce">Commerce</option><option value="other">Other</option></select></div></div><button class="btn btn-primary" type="button" onclick="checkEligibility()">Check my starting options</button><div id="eligibilityResult" class="result-box"></div></section>
+<section class="dashboard-card"><div class="eyebrow-sm">Personal planning</div><h2>Study Planner</h2><p class="sub">Tasks are saved only in this browser.</p><form class="task-form" onsubmit="event.preventDefault(); addTask();"><input id="taskInput" type="text" placeholder="Example: Revise algebra for 45 minutes" maxlength="120" aria-label="Study task"><button class="btn btn-primary" type="submit">Add Task</button></form><ul class="task-list" id="taskList"></ul></section>
+<section class="dashboard-card"><div class="eyebrow-sm">Time planning</div><h2>Exam Countdown</h2><p class="sub">Set your own target date or use the default planning date.</p><div class="field"><label for="targetDate">Target date and time</label><input id="targetDate" type="datetime-local"></div><div class="countdown"><div class="count-box"><strong id="days">00</strong><span>Days</span></div><div class="count-box"><strong id="hours">00</strong><span>Hours</span></div><div class="count-box"><strong id="minutes">00</strong><span>Minutes</span></div><div class="count-box"><strong id="seconds">00</strong><span>Seconds</span></div></div></section>
+<section class="dashboard-card"><div class="eyebrow-sm">Progress tracker</div><h2>Preparation Progress</h2><p class="sub">Move the sliders to reflect your own study completion.</p><div class="progress-row"><div class="progress-top"><span>Mathematics</span><span id="mathValue">0%</span></div><input data-progress="math" type="range" min="0" max="100" value="0" aria-label="Mathematics progress"></div><div class="progress-row"><div class="progress-top"><span>English</span><span id="englishValue">0%</span></div><input data-progress="english" type="range" min="0" max="100" value="0" aria-label="English progress"></div><div class="progress-row"><div class="progress-top"><span>General Knowledge</span><span id="gkValue">0%</span></div><input data-progress="gk" type="range" min="0" max="100" value="0" aria-label="General Knowledge progress"></div><div class="overall"><span>Overall progress</span><strong id="overallProgress">0%</strong><div class="progress" aria-hidden="true"><div id="overallBar" style="height:100%;width:0%;background:#395c3d"></div></div></div></section>
+<section class="dashboard-card"><div class="eyebrow-sm">Reality check</div><h2>Use the project responsibly</h2><p class="sub">The tools help with personal planning, not official recruitment decisions.</p><ul class="mini-list"><li>Use the current exam notification for exact rules.</li><li>Do not rely on a single website for medical or eligibility decisions.</li><li>Keep your study plan realistic and adjust it when your school or exam schedule changes.</li></ul></section>
+</div></div></section>
+<div id="examModal" class="modal" aria-hidden="true"><div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button class="modal-close" type="button" aria-label="Close" onclick="closeExam()">×</button><div class="eyebrow">Exam guide</div><h2 id="modalTitle">Exam</h2><p id="modalSummary"></p><div id="modalPoints" class="modal-points"></div><a id="modalSource" class="btn btn-secondary source-button" target="_blank" rel="noopener">Official source →</a></div></div>
+
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo-box"><img class="footer-logo" src="assets/logo-full.png" alt="My Defence Journey logo"></div>
+      <h3>🇮🇳 My Defence Journey</h3>
+      <p>A student-focused educational website that brings defence exam awareness, career exploration, preparation guidance and simple study tools into one place.</p>
+      <p class="footer-note">Information is educational and should be verified against the latest official notification before any application or decision.</p>
+    </div>
+    <div>
+      <h3>Explore</h3>
+      <ul class="footer-links">
+        <li><a href="exams.html">Defence Exams</a></li>
+        <li><a href="career.html">Career</a></li>
+        <li><a href="preparation.html">Preparation</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="about.html">About the Project</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Official sources</h3>
+      <ul class="footer-links">
+        <li><a href="https://www.upsc.gov.in/" target="_blank" rel="noopener">UPSC</a></li>
+        <li><a href="https://www.joinindiannavy.gov.in/" target="_blank" rel="noopener">Join Indian Navy</a></li>
+        <li><a href="https://careerairforce.gov.in/" target="_blank" rel="noopener">Indian Air Force</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="developer-credit"><span>Developed by</span><strong>Sumedh Dhamdhere</strong></div>
+  <div class="footer-bottom"><span>© 2026 My Defence Journey. All Rights Reserved.</span><span>Dream • Prepare • Defend</span></div>
+</footer>
+</body>
+</html>
